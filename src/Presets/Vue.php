@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Presets;
 
 use Illuminate\Filesystem\Filesystem;
@@ -54,7 +56,7 @@ class Vue extends Preset
      */
     protected static function updateComponent()
     {
-        (new Filesystem)->delete(
+        (new Filesystem())->delete(
             resource_path('js/components/Example.js')
         );
 

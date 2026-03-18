@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Tests\AuthBackend;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -17,7 +19,8 @@ use PHPUnit\Framework\Attributes\Test;
 #[WithMigration]
 class RegistersUsersTest extends TestCase
 {
-    use RegistersUsers, RefreshDatabase;
+    use RegistersUsers;
+    use RefreshDatabase;
 
     #[Test]
     public function it_can_register_a_user()
@@ -56,12 +59,12 @@ class RegistersUsersTest extends TestCase
         ]);
     }
 
-     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+    /**
+    * Create a new user instance after a valid registration.
+    *
+    * @param  array  $data
+    * @return \App\Models\User
+    */
     protected function create(array $data)
     {
         $user = (new User())->forceFill([

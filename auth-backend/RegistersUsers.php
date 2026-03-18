@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Auth\Events\Registered;
@@ -63,6 +65,6 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
-        //
+
     }
 }

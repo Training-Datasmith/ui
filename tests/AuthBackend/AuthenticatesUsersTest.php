@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Tests\AuthBackend;
 
 use Illuminate\Auth\Events\Attempting;
@@ -20,7 +22,8 @@ use PHPUnit\Framework\Attributes\Test;
 #[WithMigration]
 class AuthenticatesUsersTest extends TestCase
 {
-    use AuthenticatesUsers, RefreshDatabase;
+    use AuthenticatesUsers;
+    use RefreshDatabase;
 
     protected function tearDown(): void
     {
@@ -66,7 +69,8 @@ class AuthenticatesUsersTest extends TestCase
         ]);
 
         $response = $this->handleRequestUsing(
-            $request, fn ($request) => $this->logout($request)
+            $request,
+            fn ($request) => $this->logout($request)
         )->assertStatus(204);
 
         Event::assertDispatched(fn (Logout $event) => $user->is($event->user));

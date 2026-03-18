@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\JsonResponse;
@@ -9,7 +11,8 @@ use Illuminate\Validation\ValidationException;
 
 trait AuthenticatesUsers
 {
-    use RedirectsUsers, ThrottlesLogins;
+    use RedirectsUsers;
+    use ThrottlesLogins;
 
     /**
      * Show the application's login form.
@@ -84,7 +87,8 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->boolean('remember')
+            $this->credentials($request),
+            $request->boolean('remember')
         );
     }
 
@@ -129,7 +133,7 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+
     }
 
     /**
@@ -188,7 +192,7 @@ trait AuthenticatesUsers
      */
     protected function loggedOut(Request $request)
     {
-        //
+
     }
 
     /**

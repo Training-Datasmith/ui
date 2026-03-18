@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Presets;
 
 use Illuminate\Filesystem\Filesystem;
@@ -34,7 +36,7 @@ class React extends Preset
             'react-dom' => '^18.2.0',
         ] + Arr::except($packages, [
             '@vitejs/plugin-vue',
-            'vue'
+            'vue',
         ]);
     }
 
@@ -55,7 +57,7 @@ class React extends Preset
      */
     protected static function updateComponent()
     {
-        (new Filesystem)->delete(
+        (new Filesystem())->delete(
             resource_path('js/components/ExampleComponent.vue')
         );
 

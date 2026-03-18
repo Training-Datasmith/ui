@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Presets;
 
 use Illuminate\Filesystem\Filesystem;
@@ -13,7 +15,7 @@ class Preset
      */
     protected static function ensureComponentDirectoryExists()
     {
-        $filesystem = new Filesystem;
+        $filesystem = new Filesystem();
 
         if (! $filesystem->isDirectory($directory = resource_path('js/components'))) {
             $filesystem->makeDirectory($directory, 0755, true);
@@ -56,7 +58,7 @@ class Preset
      */
     protected static function removeNodeModules()
     {
-        tap(new Filesystem, function ($files): void {
+        tap(new Filesystem(), function ($files): void {
             $files->deleteDirectory(base_path('node_modules'));
 
             $files->delete(base_path('yarn.lock'));

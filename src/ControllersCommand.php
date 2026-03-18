@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui;
 
 use Illuminate\Console\Command;
@@ -34,7 +36,7 @@ class ControllersCommand extends Command
             mkdir($directory, 0755, true);
         }
 
-        $filesystem = new Filesystem;
+        $filesystem = new Filesystem();
 
         collect($filesystem->allFiles(__DIR__.'/../stubs/Auth'))
             ->each(function (SplFileInfo $file) use ($filesystem): void {

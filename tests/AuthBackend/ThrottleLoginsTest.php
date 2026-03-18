@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Tests\AuthBackend;
 
 use Illuminate\Foundation\Auth\ThrottlesLogins as ThrottlesLoginsTrait;
-use Orchestra\Testbench\TestCase;
 use Illuminate\Http\Request;
+use Orchestra\Testbench\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui;
 
 class AuthRouteMethods
@@ -15,7 +17,7 @@ class AuthRouteMethods
         return function ($options = []): void {
             $namespace = class_exists($this->prependGroupNamespace('Auth\LoginController')) ? null : 'App\Http\Controllers';
 
-            $this->group(['namespace' => $namespace], function() use($options): void {
+            $this->group(['namespace' => $namespace], function () use ($options): void {
                 // Login Routes...
                 if ($options['login'] ?? true) {
                     $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');

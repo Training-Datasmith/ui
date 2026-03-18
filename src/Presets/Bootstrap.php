@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui\Presets;
 
 use Illuminate\Filesystem\Filesystem;
@@ -49,7 +51,7 @@ class Bootstrap extends Preset
      */
     protected static function updateSass()
     {
-        (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
+        (new Filesystem())->ensureDirectoryExists(resource_path('sass'));
 
         copy(__DIR__.'/bootstrap-stubs/_variables.scss', resource_path('sass/_variables.scss'));
         copy(__DIR__.'/bootstrap-stubs/app.scss', resource_path('sass/app.scss'));

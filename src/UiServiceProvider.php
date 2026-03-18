@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravel\Ui;
 
 use Illuminate\Support\Facades\Route;
@@ -26,6 +28,6 @@ class UiServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::mixin(new AuthRouteMethods);
+        Route::mixin(new AuthRouteMethods());
     }
 }
