@@ -12,10 +12,10 @@ class AuthRouteMethods
      */
     public function auth()
     {
-        return function ($options = []) {
+        return function ($options = []): void {
             $namespace = class_exists($this->prependGroupNamespace('Auth\LoginController')) ? null : 'App\Http\Controllers';
 
-            $this->group(['namespace' => $namespace], function() use($options) {
+            $this->group(['namespace' => $namespace], function() use($options): void {
                 // Login Routes...
                 if ($options['login'] ?? true) {
                     $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -59,7 +59,7 @@ class AuthRouteMethods
      */
     public function resetPassword()
     {
-        return function () {
+        return function (): void {
             $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
             $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
             $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
@@ -74,7 +74,7 @@ class AuthRouteMethods
      */
     public function confirmPassword()
     {
-        return function () {
+        return function (): void {
             $this->get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
             $this->post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
         };
@@ -87,7 +87,7 @@ class AuthRouteMethods
      */
     public function emailVerification()
     {
-        return function () {
+        return function (): void {
             $this->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
             $this->get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
             $this->post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');

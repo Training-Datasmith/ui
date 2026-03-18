@@ -9,10 +9,8 @@ class React extends Preset
 {
     /**
      * Install the preset.
-     *
-     * @return void
      */
-    public static function install()
+    public static function install(): void
     {
         static::ensureComponentDirectoryExists();
         static::updatePackages();
@@ -26,7 +24,6 @@ class React extends Preset
     /**
      * Update the given package array.
      *
-     * @param  array  $packages
      * @return array
      */
     protected static function updatePackageArray(array $packages)
@@ -101,9 +98,8 @@ class React extends Preset
      * Get full view path relative to the application's configured view path.
      *
      * @param  string  $path
-     * @return string
      */
-    protected static function getViewPath($path)
+    protected static function getViewPath($path): string
     {
         return implode(DIRECTORY_SEPARATOR, [
             config('view.paths')[0] ?? resource_path('views'), $path,

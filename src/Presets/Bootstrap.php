@@ -8,10 +8,8 @@ class Bootstrap extends Preset
 {
     /**
      * Install the preset.
-     *
-     * @return void
      */
-    public static function install()
+    public static function install(): void
     {
         static::updatePackages();
         static::updateViteConfiguration();
@@ -23,7 +21,6 @@ class Bootstrap extends Preset
     /**
      * Update the given package array.
      *
-     * @param  array  $packages
      * @return array
      */
     protected static function updatePackageArray(array $packages)

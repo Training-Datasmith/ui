@@ -27,10 +27,8 @@ class ControllersCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         if (! is_dir($directory = app_path('Http/Controllers/Auth'))) {
             mkdir($directory, 0755, true);
@@ -39,7 +37,7 @@ class ControllersCommand extends Command
         $filesystem = new Filesystem;
 
         collect($filesystem->allFiles(__DIR__.'/../stubs/Auth'))
-            ->each(function (SplFileInfo $file) use ($filesystem) {
+            ->each(function (SplFileInfo $file) use ($filesystem): void {
                 $filesystem->copy(
                     $file->getPathname(),
                     app_path('Http/Controllers/Auth/'.Str::replaceLast('.stub', '.php', $file->getFilename()))

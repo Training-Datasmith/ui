@@ -9,10 +9,8 @@ class Vue extends Preset
 {
     /**
      * Install the preset.
-     *
-     * @return void
      */
-    public static function install()
+    public static function install(): void
     {
         static::ensureComponentDirectoryExists();
         static::updatePackages();
@@ -25,7 +23,6 @@ class Vue extends Preset
     /**
      * Update the given package array.
      *
-     * @param  array  $packages
      * @return array
      */
     protected static function updatePackageArray(array $packages)

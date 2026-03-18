@@ -9,10 +9,8 @@ class UiServiceProvider extends ServiceProvider
 {
     /**
      * Register the package services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -25,10 +23,8 @@ class UiServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Route::mixin(new AuthRouteMethods);
     }
