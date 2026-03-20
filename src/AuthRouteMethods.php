@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Laravel\Ui;
 
-class AuthRouteMethods
+class Auth_Route_Methods
 {
     /**
      * Register the typical authentication routes for an application.
@@ -15,51 +14,43 @@ class AuthRouteMethods
     public function auth()
     {
         return function ($options = []): void {
-            $namespace = class_exists($this->prependGroupNamespace('Auth\LoginController')) ? null : 'App\Http\Controllers';
-
+            $namespace = class_exists($this->prepend_group_namespace('Auth\LoginController')) ? null : 'App\Http\Controllers';
             $this->group(['namespace' => $namespace], function () use ($options): void {
                 // Login Routes...
                 if ($options['login'] ?? true) {
                     $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
                     $this->post('login', 'Auth\LoginController@login');
                 }
-
                 // Logout Routes...
                 if ($options['logout'] ?? true) {
                     $this->post('logout', 'Auth\LoginController@logout')->name('logout');
                 }
-
                 // Registration Routes...
                 if ($options['register'] ?? true) {
                     $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
                     $this->post('register', 'Auth\RegisterController@register');
                 }
-
                 // Password Reset Routes...
                 if ($options['reset'] ?? true) {
-                    $this->resetPassword();
+                    $this->reset_password();
                 }
-
                 // Password Confirmation Routes...
-                if ($options['confirm'] ??
-                    class_exists($this->prependGroupNamespace('Auth\ConfirmPasswordController'))) {
-                    $this->confirmPassword();
+                if ($options['confirm'] ?? class_exists($this->prepend_group_namespace('Auth\ConfirmPasswordController'))) {
+                    $this->confirm_password();
                 }
-
                 // Email Verification Routes...
                 if ($options['verify'] ?? false) {
-                    $this->emailVerification();
+                    $this->email_verification();
                 }
             });
         };
     }
-
     /**
      * Register the typical reset password routes for an application.
      *
      * @return callable
      */
-    public function resetPassword()
+    public function reset_password()
     {
         return function (): void {
             $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -68,26 +59,24 @@ class AuthRouteMethods
             $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
         };
     }
-
     /**
      * Register the typical confirm password routes for an application.
      *
      * @return callable
      */
-    public function confirmPassword()
+    public function confirm_password()
     {
         return function (): void {
             $this->get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
             $this->post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
         };
     }
-
     /**
      * Register the typical email verification routes for an application.
      *
      * @return callable
      */
-    public function emailVerification()
+    public function email_verification()
     {
         return function (): void {
             $this->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');

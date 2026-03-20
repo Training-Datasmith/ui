@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Laravel\Ui\Presets;
 
 use Illuminate\Filesystem\Filesystem;
-
 class Bootstrap extends Preset
 {
     /**
@@ -13,57 +11,48 @@ class Bootstrap extends Preset
      */
     public static function install(): void
     {
-        static::updatePackages();
-        static::updateViteConfiguration();
-        static::updateSass();
-        static::updateBootstrapping();
-        static::removeNodeModules();
+        static::update_packages();
+        static::update_vite_configuration();
+        static::update_sass();
+        static::update_bootstrapping();
+        static::remove_node_modules();
     }
-
     /**
      * Update the given package array.
      *
      * @return array
      */
-    protected static function updatePackageArray(array $packages)
+    protected static function update_package_array(array $packages)
     {
-        return [
-            'bootstrap' => '^5.2.3',
-            '@popperjs/core' => '^2.11.6',
-            'sass' => '^1.56.1',
-        ] + $packages;
+        return ['bootstrap' => '^5.2.3', '@popperjs/core' => '^2.11.6', 'sass' => '^1.56.1'] + $packages;
     }
-
     /**
      * Update the Vite configuration.
      *
      * @return void
      */
-    protected static function updateViteConfiguration()
+    protected static function update_vite_configuration()
     {
-        copy(__DIR__.'/bootstrap-stubs/vite.config.js', base_path('vite.config.js'));
+        copy(__DIR__ . '/bootstrap-stubs/vite.config.js', base_path('vite.config.js'));
     }
-
     /**
      * Update the Sass files for the application.
      *
      * @return void
      */
-    protected static function updateSass()
+    protected static function update_sass()
     {
-        (new Filesystem())->ensureDirectoryExists(resource_path('sass'));
-
-        copy(__DIR__.'/bootstrap-stubs/_variables.scss', resource_path('sass/_variables.scss'));
-        copy(__DIR__.'/bootstrap-stubs/app.scss', resource_path('sass/app.scss'));
+        (new Filesystem())->ensure_directory_exists(resource_path('sass'));
+        copy(__DIR__ . '/bootstrap-stubs/_variables.scss', resource_path('sass/_variables.scss'));
+        copy(__DIR__ . '/bootstrap-stubs/app.scss', resource_path('sass/app.scss'));
     }
-
     /**
      * Update the bootstrapping files.
      *
      * @return void
      */
-    protected static function updateBootstrapping()
+    protected static function update_bootstrapping()
     {
-        copy(__DIR__.'/bootstrap-stubs/bootstrap.js', resource_path('js/bootstrap.js'));
+        copy(__DIR__ . '/bootstrap-stubs/bootstrap.js', resource_path('js/bootstrap.js'));
     }
 }

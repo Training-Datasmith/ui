@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 namespace Laravel\Ui;
 
 use Illuminate\Console\Command;
 use InvalidArgumentException;
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'ui')]
-class UiCommand extends Command
+use Symfony\Component\Console\Attribute\As_Command;
+#[As_Command(name: 'ui')]
+class Ui_Command extends Command
 {
     /**
      * The console command signature.
@@ -20,14 +18,12 @@ class UiCommand extends Command
                     { type : The preset type (bootstrap, vue, react) }
                     { --auth : Install authentication UI scaffolding }
                     { --option=* : Pass an option to the preset command }';
-
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Swap the front-end scaffolding for the application';
-
     /**
      * Execute the console command.
      *
@@ -37,21 +33,17 @@ class UiCommand extends Command
      */
     public function handle()
     {
-        if (static::hasMacro($this->argument('type'))) {
+        if (static::has_macro($this->argument('type'))) {
             return call_user_func(static::$macros[$this->argument('type')], $this);
         }
-
-        if (! in_array($this->argument('type'), ['bootstrap', 'vue', 'react'])) {
+        if (!in_array($this->argument('type'), ['bootstrap', 'vue', 'react'])) {
             throw new InvalidArgumentException('Invalid preset.');
         }
-
         if ($this->option('auth')) {
             $this->call('ui:auth');
         }
-
         $this->{$this->argument('type')}();
     }
-
     /**
      * Install the "bootstrap" preset.
      *
@@ -60,11 +52,9 @@ class UiCommand extends Command
     protected function bootstrap()
     {
         Presets\Bootstrap::install();
-
         $this->components->info('Bootstrap scaffolding installed successfully.');
         $this->components->warn('Please run [npm install && npm run dev] to compile your fresh scaffolding.');
     }
-
     /**
      * Install the "vue" preset.
      *
@@ -74,11 +64,9 @@ class UiCommand extends Command
     {
         Presets\Bootstrap::install();
         Presets\Vue::install();
-
         $this->components->info('Vue scaffolding installed successfully.');
         $this->components->warn('Please run [npm install && npm run dev] to compile your fresh scaffolding.');
     }
-
     /**
      * Install the "react" preset.
      *
@@ -88,7 +76,6 @@ class UiCommand extends Command
     {
         Presets\Bootstrap::install();
         Presets\React::install();
-
         $this->components->info('React scaffolding installed successfully.');
         $this->components->warn('Please run [npm install && npm run dev] to compile your fresh scaffolding.');
     }
